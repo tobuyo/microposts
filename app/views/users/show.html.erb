@@ -1,4 +1,14 @@
 <h1>
+  プロフィール画面
   <%= gravatar_for @user %>
-  <%= @user.name %>
 </h1>
+
+<div class="col-md-6 col-md-offset-3">
+<ul class="list-group">
+  <li class="list-group-item">名前:<%= @user.name %></li>
+  <li class="list-group-item">地域:<%= @user.region %></li>
+  <li class="list-group-item">プロフィール:<%= @user.profile %></li>
+</ul>
+
+[<%= link_to "編集" , edit_user_path(@user) %>]
+</div>

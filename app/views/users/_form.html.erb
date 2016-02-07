@@ -1,0 +1,28 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.present? %>
+    <div class="alert alert-danger">
+      <%= alert %>
+      <ul>
+        <% @user.errors.full_messages.each do |full_message| %>
+          <li>
+            <%= full_message %>
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+  <% end %>
+
+<div class="form-group">
+    <label>名前:</label>
+    <%= f.text_field :name, class:"form-control" %>
+</div>
+<div class="form-group">
+    <label>地域:</label>
+    <%= f.text_field :region, class:"form-control" %>
+</div>
+<div class="form-group">
+    <label>プロフィール:</label>
+    <%= f.text_area :profile, class:"form-control" %>
+</div>
+  <%= f.submit class: "btn btn-sm btn-primary" %>
+<% end %>
