@@ -24,5 +24,16 @@
     <label>プロフィール:</label>
     <%= f.text_area :profile, class:"form-control" %>
 </div>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
+<div class="form-group">
+    <%= f.label :password %>:(パスワードを変更する場合は以下に入力してください)
+    <%= f.password_field :password, class: 'form-control' %>
+    </div>
+<div class="form-group">
+    <%= f.label :password_confirmation, "Confirmation" %>:(確認のためもう一度入力してください)
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+</div>
+
   <%= f.submit class: "btn btn-sm btn-primary" %>
 <% end %>
