@@ -9,10 +9,9 @@
   <li class="list-group-item">地域:<%= @user.region %></li>
   <li class="list-group-item">プロフィール:<%= @user.profile %></li>
 </ul>
-
-
-
 </div>
+
+
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -23,6 +22,7 @@
     </section>
   </aside>
   <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
