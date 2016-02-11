@@ -135,7 +135,7 @@ aside {
 }
 
 .gravatar {
-  float: left;
+  /*float: left;*/
   margin-right: 10px;
 }
 
@@ -188,4 +188,9 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+/* リスト */
+ul{
+  list-style:none;
 }

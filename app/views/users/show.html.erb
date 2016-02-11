@@ -3,6 +3,7 @@
   <%= gravatar_for @user %>
 </h1>
 
+
 <div class="col-md-6 col-md-offset-3">
 <ul class="list-group">
   <li class="list-group-item">名前:<%= @user.name %></li>
@@ -12,8 +13,10 @@
 </div>
 
 
+<% unless current_user == @user ##フォローボタンは、自分の時はださない %>
+
 <div class="row">
-  <aside class="col-md-4">
+  <!-- <aside class="col-md-4">
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %>
@@ -21,7 +24,8 @@
       </h1>
     </section>
   </aside>
-  <div class="col-md-8">
+  -->
+  <div class="col-md-1">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
@@ -31,3 +35,10 @@
     <% end %>
   </div>
 </div>
+
+<% end %>
+<div class="col-md-6 col-md-offset-3">
+<%= link_to("Following",{ :action =>'followings'}, :class => 'btn btn-primary') %>
+<%= link_to("Followers",{ :action =>'followers'}, :class => 'btn btn-primary') %>
+</div>
+
