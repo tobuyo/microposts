@@ -3,10 +3,10 @@
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content"><%= micropost.content %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    <%= time_ago_in_words(micropost.created_at) %> 分前の投稿です.
     <% if current_user == micropost.user %>
-      <%= link_to "delete", micropost, method: :delete,
-                                       data: { confirm: "You sure?" } %>
+      <%= link_to "削除", micropost, method: :delete,
+                                       data: { confirm: "ええんか？" } %>
     <% end %>
   </span>
 </li>
