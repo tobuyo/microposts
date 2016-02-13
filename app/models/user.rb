@@ -19,6 +19,14 @@ class User < ActiveRecord::Base
   has_many :follower_users, through: :follower_relationships, source: :follower
   ##フォローしているユーザーはたくさんある
   
+  ##こっからお気に入り機能
+  has_many :like_posts,through: :like_relationships, source: :liked
+  has_many :like_relationships, class_name: "Likeship",
+                                foreign_key: "liked_id",
+                                dependent: :destroy
+  has_many :liked_users, through: :like_relationships, source: :like
+  
+  
    # 他のユーザーをフォローする
   def follow(other_user)
     following_relationships.find_or_create_by(followed_id: other_user.id)
@@ -38,4 +46,5 @@ class User < ActiveRecord::Base
   def feed_items
     Micropost.where(user_id: following_user_ids + [self.id])
   end
+  
 end

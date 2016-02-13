@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   
-  
   def show 
    @user = User.find(params[:id]) ###@UserにURLのIDをいれてる
    @microposts = @user.microposts.order(created_at: :desc)
@@ -61,6 +60,13 @@ class UsersController < ApplicationController
     @users = @user.follower_users ###relationshipsを全部読み込んだ
     @title = "#{@user.name}のフォロワー"
     render 'show_follow'
+  end
+  
+  def like
+    @user = User.find(params[:id])
+    @likeposts = @user.like_posts
+    render 'show_follow'
+    
   end
   
  
