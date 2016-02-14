@@ -64,9 +64,6 @@ class UsersController < ApplicationController
   
   def like
     @user = User.find(params[:id])
-    @likeposts = @user.like_posts
-    render 'show_follow'
-    
   end
   
  
@@ -74,7 +71,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation,:profile,:region)
+                                 :password_confirmation,:profile,:region, :image)
   end
   
 # ログイン済みか確認

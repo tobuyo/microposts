@@ -20,8 +20,15 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
   
+  def like
+    @micropost = Micropost.find(params[:id])
+    @likeposts = @micropost.liked_users
+    render 'users/show_follow'
+    
+  end
+  
   private
   def micropost_params
-    params.require(:micropost).permit(:content)
+    params.require(:micropost).permit(:content,:image)
   end
 end

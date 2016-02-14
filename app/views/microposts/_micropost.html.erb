@@ -8,5 +8,12 @@
       <%= link_to "削除", micropost, method: :delete,
                                        data: { confirm: "ええんか？" } %>
     <% end %>
+    
   </span>
+  <% if micropost.image? %>
+    <div class="thumbnail">
+      <%= image_tag micropost.image.url %>
+    </div>
+  <% end %>
+  <%= render 'microposts/like_form' %>
 </li>
