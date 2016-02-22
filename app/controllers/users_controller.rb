@@ -62,9 +62,6 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
-  def like
-    @user = User.find(params[:id])
-  end
   
  
   private

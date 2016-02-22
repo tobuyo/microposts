@@ -1,20 +1,25 @@
 class LikerelationshipsController < ApplicationController
     before_action :logged_in_user
     
-  def create
-    @micropost = Micropost.find_by_id(params[:liked_id])###followed_idからユーザー情報をとりだす
-    @like = current_user.like_likerelationships.build(micropost: @micropost)
+  
     
-    if @like.save
-        redirect_to microposts_url, notice:"お気に入りしたよ"
-    else
-        redirect_to microposts_url, alert:"残念、お気に入りできませんね"
-    end
+  def create
+    
+    @micropost = Micropost.find(params[:id])###followed_idからユーザー情報をとりだす
+    #Likerelationship.create({like_id: current_user.id, liked_id: @micropost.id})
+    #current_user.like_likerelationships.find_or_create_by(liked_id: @micropost)
+   # binding.pry
+    Likerelationship.find_or_create_by({like_id: current_user.id, liked_id: @micropost.id })
+    # @like = current_user.like_likerelationships.build(like_id: @micropost)
+    
   end
 
   def destroy
-    @like = current_user.like_likerelationships.find_by!(micropost_id: params[:micropost_id])
-    @like.destroy
-    redirect_to micropost_url,notice:"解除した"
+    @micropost = current_user.like_likerelationships.find_by(liked_id: params[:id])
+    
+    
+    @micropost.destroy
+    @micropost = Micropost.find(params[:id])
+    #binding.pry
   end
 end

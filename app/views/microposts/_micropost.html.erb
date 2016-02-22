@@ -15,5 +15,5 @@
       <%= image_tag micropost.image.url %>
     </div>
   <% end %>
-  <%= render 'microposts/like_form' %>
+  <%= render 'microposts/like_form', micropost: micropost  %>
 </li>

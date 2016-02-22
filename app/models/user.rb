@@ -21,9 +21,9 @@ class User < ActiveRecord::Base
   
   ##こっからお気に入り機能
   has_many :like_likerelationships, class_name: "Likerelationship",
-                                foreign_key: "liked_id",
+                                foreign_key: "like_id",
                                 dependent: :destroy
-  has_many :like_posts,through: :like_likerelationships, source: :liked
+  has_many :like_posts, through: :like_likerelationships, source: :liked
   
   
   
@@ -40,21 +40,24 @@ class User < ActiveRecord::Base
    # あるユーザーをフォローしているかどうか？
   def following?(other_user)
     following_users.include?(other_user)
+    ##binding.pry
   end
 
   # ある投稿をライクしているかどうか？
   def like?(micropost)
     like_posts.include?(micropost)
+    ##binding.pry
   end
   
    # 投稿をライクする
-  def like!(micropost)
-    likerelationships.find_or_create!(micropost_id: micropost.id)
+  def like(micropost)
+    likerelationships.find_or_create_by(micropost)
   end
 
   # ライクしている投稿をアンライクする
-  def unlike!(micropost)
-    likerelationships.find_by(micropost_id: micropost.id).destroy
+  def unlike(micropost)
+    like_likerelationship = like_likerelationships.find_by(micropost)
+    like_likerelationship.destroy if like_likerelationship
   end
 
  

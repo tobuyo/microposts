@@ -34,8 +34,14 @@ gem 'bcrypt', '~> 3.1.7'
 # Gemfile
 
 gem 'kaminari'
+##画像関連
 gem 'carrierwave'
 gem 'rmagick'
+
+##ER図生成
+group :development, :test do
+  gem 'rails-erd'
+end
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -45,7 +51,21 @@ gem 'rmagick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'pry-byebug'
+end
+
+group :development, :test do
+  gem 'pry-rails'
+end
+
+##エラー画面　
+group :development, :test do
+  gem 'better_errors' # Better Errors本体
+  gem 'binding_of_caller' # Better Errors上でREPLを使用するためのgem
+end
+group :development, :test do
+    # フッターにデバック情報を表示
+    gem 'rails-footnotes', '>= 3.7.9'
 end
 
 group :development do

@@ -1,0 +1,13 @@
+<h1>
+  <%= @title %>
+</h1>
+
+<ul>
+  <% @users.each do |u| %>
+    <li class="clearfix">
+      <div><%= gravatar_for u %><%= u.name %></div>
+       <br>
+    </li>
+  
+  <% end %>
+</ul>

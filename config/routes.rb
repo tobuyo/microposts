@@ -8,13 +8,18 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts
   resources :microposts do
-    collection { get :liked}
-    member {put :liked, :unliked}
+    member do
+      post 'likerelationships',   to: 'likerelationships#create'
+      delete 'likerelationships', to: 'likerelationships#destroy'
+    end
+    # resources :likerelationships, only: [:create, :destroy]
   end
-  resources :likerelationships, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :users do
-      member { get :followings, :followers, :like }
+    member do
+      get :followings
+      get :followers
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

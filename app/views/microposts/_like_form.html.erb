@@ -1,9 +1,9 @@
 <% if current_user != @user %>
-  <div id="follow_form">
-  <% if current_user.like?(@user) %>
-    <%= render 'microposts/unlike' %>
+  <div id="like_form">
+  <% if current_user.like?(micropost) %>
+    <%= render 'microposts/unlike', micropost: micropost  %>
   <% else %>
-    <%= render 'microposts/like' %>
+    <%= render 'microposts/like', micropost: micropost   %>
   <% end %>
   </div>
 <% end %>

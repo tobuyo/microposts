@@ -1,7 +1,9 @@
 class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create]
 
+  
   def create
+    
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = "Micropost created!"
@@ -20,15 +22,10 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
   
-  def like
-    @micropost = Micropost.find(params[:id])
-    @likeposts = @micropost.liked_users
-    render 'users/show_follow'
-    
-  end
   
   private
   def micropost_params
+    
     params.require(:micropost).permit(:content,:image)
   end
 end
