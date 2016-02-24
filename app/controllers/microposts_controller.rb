@@ -6,11 +6,15 @@ class MicropostsController < ApplicationController
     
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
-      flash[:success] = "Micropost created!"
+      flash[:success] = "投稿しました"
       redirect_to root_url
     else
       @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)# この行を追加
-      render 'static_pages/home'
+      flash[:warning] = '投稿に失敗しました！'
+      
+     #binding.pry
+     redirect_to root_url
+     # render 'static_pages/home'
     end
   end
   

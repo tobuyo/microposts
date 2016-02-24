@@ -1,6 +1,6 @@
 <%= form_for(current_user.like_likerelationships.find_by(liked_id: micropost.id),
              url: likerelationships_micropost_path(micropost.id),
-             html: { method: :delete },
+             html: { method: :delete ,id: "like-#{micropost.id}"},
              remote: true) do |f| %>
              
   <%= f.submit "Unlike", class: "btn" %>

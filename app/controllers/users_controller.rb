@@ -59,9 +59,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) ###@UserにURLのIDをいれてる
     @users = @user.follower_users ###relationshipsを全部読み込んだ
     @title = "#{@user.name}のフォロワー"
+    #binding.pry
     render 'show_follow'
   end
   
+  def likerelationships
+    @user = User.find(params[:id]) 
+    @micropost = @user.like_likerelationships #ライクしてる関係だしてる
+    @likedid = @micropost.select("liked_id")
+    @microposts = Micropost.where(:id => @likedid).reverse
+    
+    @title = "#{@user.name}のLike一覧"
+    #binding.pry
+    render 'show_likes'
+  end
   
  
   private

@@ -3,11 +3,6 @@
 </h1>
 
 <ul>
-  <% @users.each do |u| %>
-    <li class="clearfix">
-      <div><%= gravatar_for u %><%= u.name %></div>
-       <br>
-    </li>
+   <%= render @microposts %>
   
-  <% end %>
 </ul>

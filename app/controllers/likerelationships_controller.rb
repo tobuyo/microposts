@@ -8,7 +8,6 @@ class LikerelationshipsController < ApplicationController
     @micropost = Micropost.find(params[:id])###followed_idからユーザー情報をとりだす
     #Likerelationship.create({like_id: current_user.id, liked_id: @micropost.id})
     #current_user.like_likerelationships.find_or_create_by(liked_id: @micropost)
-   # binding.pry
     Likerelationship.find_or_create_by({like_id: current_user.id, liked_id: @micropost.id })
     # @like = current_user.like_likerelationships.build(like_id: @micropost)
     
